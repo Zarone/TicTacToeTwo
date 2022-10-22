@@ -6,11 +6,11 @@ on:
 
 jobs:
   client:
-    name: "Client Tests"
+    name: 'Client Tests'
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout 🛎"
+      - name: 'Checkout 🛎'
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -20,21 +20,21 @@ jobs:
         with:
           node-version: 16.18
 
-      - name: "Install yarn dependencies 🧶"
+      - name: 'Install yarn dependencies 🧶'
         run: |
           npm install -g yarn
           yarn workspace @tictactoe/client install  --immutable
 
-      - name: "Jest 🃏"
+      - name: 'Jest 🃏'
         run: |
           yarn workspace @tictactoe/client test --watchAll=false
-       
+
   server:
-    name: "Server Tests"
+    name: 'Server Tests'
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout 🛎"
+      - name: 'Checkout 🛎'
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -44,12 +44,11 @@ jobs:
         with:
           node-version: 16.18
 
-      - name: "Install yarn dependencies 🧶"
+      - name: 'Install yarn dependencies 🧶'
         run: |
           npm install -g yarn
           yarn workspace @tictactoe/client install  --immutable
 
-      - name: "Jest 🃏"
+      - name: 'Jest 🃏'
         run: |
           yarn workspace @tictactoe/server test --watchAll=false
-       

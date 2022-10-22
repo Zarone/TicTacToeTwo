@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-sky-900 text-sky-100;
+        min-height: 100vh;
+    }
+}
+
+
+@font-face {
+    font-family: "Rocher";
+    src: url("../public/fonts/RocherColorGX.woff2") format("woff2 supports variations"),
+    url("../public/fonts/RocherColorGX.woff2") format("woff2-variations");
+    font-weight: 100 1000;
+}

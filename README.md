@@ -77,7 +77,7 @@ This project is using `jest` for automated tests. Both client and server are con
 
 To run the test suite execute:
 
-```shell  
+```shell
 # in project root:
 yarn run test
 ## or individiually:
@@ -91,7 +91,8 @@ yarn run test
 
 This project is using `prettier` to keep the code style consistent.
 To format the whole codebase execute:
-```shell 
+
+```shell
 # in project root:
 yarn run format # or: make format
 ```
@@ -101,7 +102,6 @@ yarn run format # or: make format
 tbd.
 
 ## ⚖️️ License
-
 
 ```
 
