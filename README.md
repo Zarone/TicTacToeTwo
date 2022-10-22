@@ -15,7 +15,20 @@ yarn install
 
 This will install all the required dependencies for both `client` and `server`.
 
+### ⚙️Environment Variables
+
+Copy the `.env.example` file from the `client/` directory to `client/.env`.
+Adjust the variables according to your setup, the defaults will work with this guide.
+
+### 🏃‍♀️ Running
 After that you can start the applications using:
+
+```shell
+# in project root
+yarn dev
+```
+
+Or alternatively start client and server independently using:
 
 ```shell
 # start the frontend:
@@ -28,31 +41,6 @@ yarn run start
 ```
 
 The client is listening on `:3000`. The server is listening on `:3001`.
-
-## 🔨Development
-
-To start the application in development mode with hot module reloading enabled execute:
-
-```
-# in project root:
-yarn dev # alternatively: make dev
-```
-
-Otherwise you can start the applications independently using:
-
-```
-yarn workspace @tictactoe/client dev
-yarn workspace @tictactoe/server dev
-```
-
-Both applications run with automatic reload on the following ports:
-
-```
-react frontend: http://localhost:3000
-nodejs backend: http://localhost:3001
-```
-
-The application should listen on port `:3000 (frontend)` and `:3001 (backend)` respectively.
 
 ## 🐳Docker
 
@@ -71,6 +59,8 @@ http://localhost:3000 # frontend
 http://localhost:3001 # backend
 ```
 
+Note: The docker setup is using the production bundle, there is no code reloading or file system mirroring at the moment.
+
 ## 🧪Testing
 
 This project is using `jest` for automated tests. Both client and server are configured using test.
@@ -80,6 +70,7 @@ To run the test suite execute:
 ```shell
 # in project root:
 yarn run test
+
 ## or individiually:
 # in server/
 yarn run test
