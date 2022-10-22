@@ -1,0 +1,25 @@
+{
+  "name": "@tictactoe/workspace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "repository": "git@github.com:posixpascal/TicTacToeTwo.git",
+  "author": "oats-community",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"yarn workspace @tictactoe/client start\" \"yarn workspace @tictactoe/server start\"",
+    "test": "concurrently \"yarn workspace @tictactoe/client test\" \"yarn workspace @tictactoe/server test\"",
+    "format": "prettier --write ."
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "concurrently": "^7.4.0",
+    "ts-node": "^10.9.1"
+  }
+}

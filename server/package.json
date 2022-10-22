@@ -1,0 +1,26 @@
+{
+  "name": "@tictactoe/server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "concurrently \"tsc -w\" \"yarn dev\"",
+    "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/app.ts\"",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "4",
+    "socket.io": "^4.5.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/socket.io": "^3.0.2",
+    "jest": "^29.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "supertest": "^6.3.0",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  }
+}
