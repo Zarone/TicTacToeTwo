@@ -26,9 +26,10 @@
   border-width: 0.2rem;
   border-radius: 10px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-  font-size: 1rem;
+  font-size: min(30px, 5vw);
   padding: 0.25em 0.75em;
   min-height: 44px;
+  width: min(500px, 40vw);
 }
 
 .button:hover {

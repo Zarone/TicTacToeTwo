@@ -1,7 +1,6 @@
 import React from 'react';
-import { useSocket } from '../hooks/useSocket';
+import { socketData, useSocket } from '../hooks/useSocket';
 
-export const SocketStatus = () => {
-  const { socket, connected } = useSocket();
-  return <div>{connected ? 'connected' : 'not connected'}</div>;
+export const SocketStatus = ({socketData}: {socketData:socketData}) => {
+  return <div>{socketData.connected ? 'connected' : 'not connected'}</div>;
 };
