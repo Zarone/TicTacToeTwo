@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
+import { DefaultEventsMap } from '@socket.io/component-emitter';
 
 export interface socketData {
   connected: boolean;
   loading: boolean;
-  socket:  Socket<any, any> | null;
+  socket:  Socket<DefaultEventsMap, DefaultEventsMap> | null;
 }
 
 export const useSocket = () => {
@@ -20,17 +21,24 @@ export const useSocket = () => {
   }, []);
 
   useEffect(() => {
-    const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT as string);
-    socket.on('connect', () => {
+    const socketScoped = io(process.env.REACT_APP_SOCKET_ENDPOINT as string);
+    socketScoped.on('connect', () => {
+      console.log('connected');
       setConnected(true);
       setLoading(false);
-      setSocket(socket);
+      setSocket(socketScoped);
     });
 
-    socket.on('disconnect', (reason) => {
+    socketScoped.on('disconnect', (reason) => {
       console.log('[SOCKET DISCONNECT]: ', reason);
       setConnected(false);
     });
+
+    return () => {
+      if (socket && connected) {
+        socket.disconnect();
+      }
+    };
   }, []);
 
   return { loading, connected, socket };

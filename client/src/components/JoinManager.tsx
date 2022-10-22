@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSocket, socketData } from '../hooks/useSocket';
+import { socketData } from '../hooks/useSocket';
 import styles from './JoinManager.module.css';
+import { rawPlayGame } from '../helper/socketJoin';
 
 export const JoinManager = (
   {socketData:{socket, connected}, setIsPlaying}: 
@@ -11,6 +12,7 @@ export const JoinManager = (
       <p>{connected ? 'connected' : 'nope'}</p>
       <div className={styles['button-container']}>
         <button type="button" className={styles.button} onClick={()=>{
+          rawPlayGame(socket);
           setIsPlaying(true);
         }} >Play Game</button>
       </div>

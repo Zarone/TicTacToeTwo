@@ -19,6 +19,14 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 io.on('connection', (socket: Socket) => {
   console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+  });
+
+  socket.on('rawPlayGame', ()=>{
+    console.log('rawPlayGame');
+  });
 });
 
 server.listen(3001, () => {
