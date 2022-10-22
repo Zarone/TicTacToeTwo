@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn workspace @tictactoe/client start\" \"yarn workspace @tictactoe/server start\"",
-    "test": "concurrently \"yarn workspace @tictactoe/client test\" \"yarn workspace @tictactoe/server test\"",
+    "test": "concurrently \"yarn workspace @tictactoe/client test --watchAll=false\" \"yarn workspace @tictactoe/server test\"",
     "format": "prettier --write ."
   },
   "workspaces": [
