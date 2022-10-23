@@ -1,16 +1,17 @@
 import { Logo } from './Logo';
-import React from 'react';
-import { SocketStatus } from './SocketStatus';
-import { socketData } from '../hooks/useSocket';
+import React, { useContext } from 'react';
+import { SocketContext } from '../contexts/SocketContext';
+import { Link } from 'react-router-dom';
 
-export const Navbar = ({socketData}: {socketData: socketData}) => {
+export const Navbar = () => {
+  const { socket } = useContext(SocketContext);
   return (
-    <nav className={'flex justify-between items-center'}>
-      <span>left</span>
-      <Logo />
-      <span>
-        <SocketStatus socketData={socketData}/>
-      </span>
-    </nav>
+    <Link to={'/'}>
+      <nav className={'flex justify-between items-center'}>
+        <span>left</span>
+        <Logo />
+        <span>Socket ID: {socket ? socket!.id : ''}</span>
+      </nav>
+    </Link>
   );
 };

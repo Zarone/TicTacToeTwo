@@ -20,6 +20,7 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "react/react-in-jsx-scope": "off",
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

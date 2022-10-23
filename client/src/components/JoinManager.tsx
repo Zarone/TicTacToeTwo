@@ -1,38 +1,53 @@
-import React from 'react';
-import { socketData } from '../hooks/useSocket';
+import React, { useContext, useState } from 'react';
 import styles from './JoinManager.module.css';
-import { rawPlayGame } from '../helper/socketJoin';
+import { SocketContext } from '../contexts/SocketContext';
 
-export const JoinManager = (
-  {
-    socketData:{socket, connected}, 
-    setIsPlaying, 
-    setLoading
-  }: 
-  {
-    socketData: socketData, 
-    setIsPlaying: (arg:boolean)=>void,
-    setLoading: (arg:boolean)=>void
-  }
-) => {
+export const JoinManager = () => {
+  const { socket } = useContext(SocketContext);
+  const [joinRoomName, setJoinRoomName] = useState('');
+  const [createRoomName, setCreateRoomName] = useState('');
+
+  const createRoom = () => {
+    socket!.emit('createRoom', createRoomName);
+  };
+
+  const joinRoom = () => {
+    socket!.emit('joinRoom', joinRoomName);
+  };
+
+  const findFreeRoom = () => {
+    socket!.emit('findFreeRoom');
+  };
+
   return (
     <div className={styles.container}>
-      <p>{connected ? 'connected' : 'nope'}</p>
       <div className={styles['button-container']}>
-        <button type="button" className={styles.button} onClick={()=>{
-          rawPlayGame(socket);
-          setLoading(true);
-          //setIsPlaying(true);
-        }} >Play Game</button>
+        <button type="button" className={styles.button} onClick={findFreeRoom}>
+          Play Game
+        </button>
       </div>
-      <br/>
+      <br />
       <div className={styles['button-container']}>
-        <button type="button" className={styles.button}>Join Room</button>
-        <input type="text" placeholder='Room ID' className={styles.input} />
+        <button type="button" onClick={joinRoom} className={styles.button}>
+          Join Room
+        </button>
+        <input
+          onInput={(e) => setJoinRoomName(e.currentTarget.value)}
+          type="text"
+          placeholder="Room ID"
+          className={styles.input}
+        />
       </div>
       <div className={styles['button-container']}>
-        <button type="button" className={styles.button}>Create Room</button>
-        <input type="text" placeholder='Room ID' className={styles.input} />
+        <button type="button" onClick={createRoom} className={styles.button}>
+          Create Room
+        </button>
+        <input
+          onInput={(e) => setCreateRoomName(e.currentTarget.value)}
+          type="text"
+          placeholder="Room ID"
+          className={styles.input}
+        />
       </div>
     </div>
   );
