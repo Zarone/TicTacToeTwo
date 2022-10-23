@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SocketContext } from '../contexts/SocketContext';
+import { GameBoard } from '../components/GameBoard';
 
 interface Room {
   id: number;
@@ -49,6 +50,7 @@ export const RoomPage: React.FC = () => {
 
   return (
     <div>
+      <GameBoard />
       <div className={'grid grid-cols-2'}>
         <div className={'grid-cols-1 rounded-xl'}>Room ID: {room.id}</div>
         <div>Players: {room.players!.join(' & ')}</div>

@@ -1,0 +1,32 @@
+.container {
+  padding: 10px; 
+  height: 70vh;
+  width: 70vh;
+  margin: 0 auto;
+}
+
+.boardImage {
+  height:100%;
+  text-align:center; 
+  margin: 0 auto;
+  background-repeat:no-repeat;
+  background-size:contain;
+  display: flex;
+  flex-wrap: wrap;
+  background-position:center;
+  justify-content:space-around;
+  align-items:center;
+  border-radius: 10px;
+}
+
+.boardTile {
+  width: 32%;
+  height: 32%;
+  background-color: rgb(192, 139, 154);
+  opacity:0.1;
+  border-radius: 10px;
+} 
+
+.boardTile:hover {
+  opacity:0.8;
+}
