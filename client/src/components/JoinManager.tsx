@@ -4,8 +4,16 @@ import styles from './JoinManager.module.css';
 import { rawPlayGame } from '../helper/socketJoin';
 
 export const JoinManager = (
-  {socketData:{socket, connected}, setIsPlaying}: 
-  {socketData: socketData, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>}
+  {
+    socketData:{socket, connected}, 
+    setIsPlaying, 
+    setLoading
+  }: 
+  {
+    socketData: socketData, 
+    setIsPlaying: (arg:boolean)=>void,
+    setLoading: (arg:boolean)=>void
+  }
 ) => {
   return (
     <div className={styles.container}>
@@ -13,7 +21,8 @@ export const JoinManager = (
       <div className={styles['button-container']}>
         <button type="button" className={styles.button} onClick={()=>{
           rawPlayGame(socket);
-          setIsPlaying(true);
+          setLoading(true);
+          //setIsPlaying(true);
         }} >Play Game</button>
       </div>
       <br/>

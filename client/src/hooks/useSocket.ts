@@ -4,13 +4,15 @@ import { DefaultEventsMap } from '@socket.io/component-emitter';
 
 export interface socketData {
   connected: boolean;
-  loading: boolean;
   socket:  Socket<DefaultEventsMap, DefaultEventsMap> | null;
 }
 
-export const useSocket = () => {
+export const useSocket = (
+  setLoading: (arg: boolean)=>void,
+  setIsPlaying: (arg: boolean)=>void
+) => {
   const [connected, setConnected] = useState(false);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const [socket, setSocket] = useState<Socket|null>(null);
 
   useEffect(() => {
@@ -34,6 +36,12 @@ export const useSocket = () => {
       setConnected(false);
     });
 
+    socketScoped.on('init', (res)=>{
+      setLoading(false);
+      setIsPlaying(true);
+      console.log('res', res);
+    });
+
     return () => {
       if (socket && connected) {
         socket.disconnect();
@@ -41,5 +49,5 @@ export const useSocket = () => {
     };
   }, []);
 
-  return { loading, connected, socket };
+  return { connected, socket };
 };

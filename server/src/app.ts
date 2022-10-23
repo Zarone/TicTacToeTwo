@@ -1,6 +1,7 @@
 import { Socket, Server } from 'socket.io';
 import express from 'express';
 import http from 'http';
+import { Room, findFreeRoom } from './helper/roomManager';
 
 const app = express();
 const server = http.createServer(app);
@@ -12,6 +13,12 @@ const io = new Server(server, {
     credentials: true,
   },
 });
+
+// these are used when the user just hits play game
+let keylessRooms: Room[] = [];
+
+// these are used when the user enters a specific game id
+//let keyedRooms = {};
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('hello world');
@@ -25,7 +32,10 @@ io.on('connection', (socket: Socket) => {
   });
 
   socket.on('rawPlayGame', ()=>{
-    console.log('rawPlayGame');
+    let [gameID, newRoom] = findFreeRoom(keylessRooms);
+    socket.join(gameID.toString());
+    socket.emit('init', {gameID, playerOne: newRoom});
+    if (!newRoom) keylessRooms[gameID].playerCount++;
   });
 });
 
