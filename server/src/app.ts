@@ -15,6 +15,10 @@ export const io = new Server(server, {
   },
 });
 
+app.get('/', (req: express.Request, res: express.Response) => {
+  res.send('hello world');
+});
+
 const rooms: Record<string, Room> = {};
 
 io.on('connection', (socket: Socket) => {
