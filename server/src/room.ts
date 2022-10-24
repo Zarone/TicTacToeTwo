@@ -27,6 +27,12 @@ export class Room {
       case 'ping':
         this.#messages.push(`${socket.id} PONG`);
         break;
+      case 'placement':
+        console.log('placement', data);
+        let isPlayerOne = this.#players[0].id==socket.id;
+        console.log('isPlayerOne: ' + isPlayerOne);
+        this.#messages.push(`${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}}`);
+        break;
     }
 
     this.broadcast();

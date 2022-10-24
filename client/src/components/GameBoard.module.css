@@ -1,7 +1,11 @@
+* {
+  --containerSize: min(90vw, 50vh);
+}
+
 .container {
   padding: 10px; 
-  height: 70vh;
-  width: 70vh;
+  height: var(--containerSize);
+  width: var(--containerSize);
   margin: 0 auto;
 }
 

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { SocketContext } from '../contexts/SocketContext';
 import { GameBoard } from '../components/GameBoard';
 
-interface Room {
+export interface Room {
   id: number;
   messages: string[];
   players: string[];
@@ -50,7 +50,7 @@ export const RoomPage: React.FC = () => {
 
   return (
     <div>
-      <GameBoard />
+      <GameBoard room={room}/>
       <div className={'grid grid-cols-2'}>
         <div className={'grid-cols-1 rounded-xl'}>Room ID: {room.id}</div>
         <div>Players: {room.players!.join(' & ')}</div>
