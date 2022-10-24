@@ -23,6 +23,7 @@ export const GameBoard = ({ room }:
             key={e} 
             onClick={()=>tileClick(e)}
           >
+            {room.board ? room.board[e] : ''}
           </div>;
         }) }
       </div>

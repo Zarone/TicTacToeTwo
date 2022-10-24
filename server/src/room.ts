@@ -58,6 +58,7 @@ export class Room {
       id: this.#id,
       players: this.#players.map((socket) => socket.id),
       messages: this.#messages,
+      board: this.#board
     };
   }
 

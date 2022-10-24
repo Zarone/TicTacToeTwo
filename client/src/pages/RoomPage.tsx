@@ -7,6 +7,7 @@ export interface Room {
   id: number;
   messages: string[];
   players: string[];
+  board: number[]; 
 }
 
 export const RoomPage: React.FC = () => {
