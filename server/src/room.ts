@@ -32,6 +32,30 @@ export class Room {
         let isPlayerOne = this.#players[0].id==socket.id;
         console.log('isPlayerOne: ' + isPlayerOne);
         this.#messages.push(`${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}}`);
+
+        //if (this.#state == RoomState.READY){
+        if (isPlayerOne) {
+          if (this.#board[data.tile]==2){
+            this.#board[data.tile] = 3;
+          } else if (this.#board[data.tile]==1){
+            return "Already at location";
+          } else if (this.#board[data.tile]==0){
+            this.#board[data.tile] = 1;
+          } else {
+            return "Data.tile is invalid: " + data.tile
+          }
+        } else {
+          if (this.#board[data.tile]==1){
+            this.#board[data.tile] = 3;
+          } else if (this.#board[data.tile]==2){
+            return "Already at location";
+          } else if (this.#board[data.tile]==0){
+            this.#board[data.tile] = 2;
+          } else {
+            return "Data.tile is invalid: " + data.tile
+          }
+        }
+        //}
         break;
     }
 
