@@ -7,8 +7,8 @@ enum RoomState {
   GAME_OVER = 'gameOver',
   STALE = 'stale', // when no user is in the room
 }
-
 export class Room {
+  // 0 is empty, 1 is blue, 2 is red, 3 is both
   #board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   #id: string;
@@ -31,9 +31,9 @@ export class Room {
         console.log('placement', data);
         let isPlayerOne = this.#players[0].id==socket.id;
         console.log('isPlayerOne: ' + isPlayerOne);
-        this.#messages.push(`${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}}`);
+        this.#messages.push(`${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}`);
 
-        //if (this.#state == RoomState.READY){
+        //if (this.#state == RoomState.READY && #turn % 2 == isPlayerOne){
         if (isPlayerOne) {
           if (this.#board[data.tile]==2){
             this.#board[data.tile] = 3;
@@ -56,6 +56,7 @@ export class Room {
           }
         }
         //}
+        console.log('board state: ' + this.#board, this.#board[data.tile]);
         break;
     }
 
