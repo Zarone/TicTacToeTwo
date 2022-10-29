@@ -15,7 +15,7 @@ export const io = new Server(server, {
   },
 });
 
-app.use(express.static('./build/static'));
+app.use(express.static('./static'));
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send('hello world');
 });
