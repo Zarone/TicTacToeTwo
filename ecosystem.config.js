@@ -8,8 +8,8 @@ module.exports = {
   ],
   deploy: {
     production: {
-      user: 'SSH_USERNAME',
-      host: 'SSH_HOSTMACHINE',
+      user: 'root',
+      host: 'h2955974.stratoserver.net',
       ref: 'origin/main',
       repo: 'git@github.com:Zarone/TicTacToeTwo.git',
       path: '/opt/tictactoe',
