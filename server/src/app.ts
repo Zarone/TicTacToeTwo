@@ -16,9 +16,6 @@ export const io = new Server(server, {
 });
 
 app.use(express.static('./static'));
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('hello world');
-});
 
 const privateRooms: Record<string, Room> = {};
 const publicRooms: Record<string, Room> = {};
