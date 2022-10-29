@@ -15,7 +15,7 @@ module.exports = {
       path: '/opt/tictactoe',
       'pre-deploy-local': '',
       'post-deploy':
-        'yarn install && make build && mv /opt/tictactoe/current/client/build/ /opt/tictactoe/current/server/build/static && pm2 reload ecosystem.config.js --env production',
+        'yarn install && make build && mv /opt/tictactoe/current/client/build/* /opt/tictactoe/current/server/static/ && pm2 reload ecosystem.config.js --env production',
       'pre-setup': '',
     },
     staging: {

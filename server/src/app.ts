@@ -15,7 +15,7 @@ export const io = new Server(server, {
   },
 });
 
-app.use(express.static('./static'));
+app.use(express.static('../static'));
 
 const privateRooms: Record<string, Room> = {};
 const publicRooms: Record<string, Room> = {};
