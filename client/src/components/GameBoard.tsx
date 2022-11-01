@@ -8,11 +8,23 @@ const getPiece = (num: number) => {
   if (!num) { 
     return ''; 
   } else if (num==1) { 
-    return (<div style={{height:'100px', width: '10px', backgroundColor: 'blue', opacity: 1}}>1</div>); 
+    return (
+      <div className={styles.pieceContainer}>
+        <div className={styles.bluePiece}></div>
+      </div>
+    ); 
   } else if (num==2) { 
-    return (<div style={{height:'10px', width: '100px', backgroundColor: 'red', opacity:1}}>1</div>); 
+    return (
+      <div className={styles.pieceContainer}>
+        <div className={styles.redPiece}></div>
+      </div>
+    ); 
   } else if (num==3) { 
-    return (<div>3</div>); 
+    return (
+      <div className={styles.pieceContainer}>
+        <div className={styles.bluePiece}></div> 
+        <div className={styles.redPiece}></div> 
+      </div>); 
   }
 };
 
