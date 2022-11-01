@@ -4,6 +4,18 @@ import { useContext } from 'react';
 import { SocketContext } from '../contexts/SocketContext';
 import { Room } from '../pages/RoomPage';
 
+const getPiece = (num: number) => {
+  if (!num) { 
+    return ''; 
+  } else if (num==1) { 
+    return (<div style={{height:'100px', width: '10px', backgroundColor: 'blue', opacity: 1}}>1</div>); 
+  } else if (num==2) { 
+    return (<div style={{height:'10px', width: '100px', backgroundColor: 'red', opacity:1}}>1</div>); 
+  } else if (num==3) { 
+    return (<div>3</div>); 
+  }
+};
+
 export const GameBoard = ({ room }:
   {room: Partial<Room>}
 ) => {
@@ -26,11 +38,7 @@ export const GameBoard = ({ room }:
             {/* This code is meant as a placeholder so that we can implement styling for the pieces later on */}
             {
               room.board 
-                ? room.board[e] != 0
-                  ? room.board[e] == 1 
-                    ? (<div>1</div>) 
-                    : room.board[e] == 3 ? (<div>3</div>) : (<div>2</div>)
-                  : <div>0</div>
+                ? getPiece(room.board[e])
                 : ''
             }
           </div>;
