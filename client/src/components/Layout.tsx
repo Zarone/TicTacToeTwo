@@ -6,7 +6,7 @@ import { SocketContextProvider } from '../contexts/SocketContext';
 export const Layout: React.FC = () => {
   return (
     <SocketContextProvider>
-      <div className={'container md:pt-10'}>
+      <div>
         <Navbar />
         <Outlet />
       </div>

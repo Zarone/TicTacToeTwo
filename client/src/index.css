@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-sky-900 text-sky-100;
+        @apply text-sky-100;
         min-height: 100vh;
     }
 }
