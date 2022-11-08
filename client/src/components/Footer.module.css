@@ -2,8 +2,15 @@
     width:100%;
     margin-top:8rem;
     background-color: rgb(0, 1, 32);
-    text-align: center;
-    font-size:1.25rem;
-    padding-top:3rem;
-    padding-bottom:10rem;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.footerTitle {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }

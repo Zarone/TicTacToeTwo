@@ -1,14 +1,19 @@
-import { Navbar } from '../components/Navbar';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { SocketContextProvider } from '../contexts/SocketContext';
+import { Footer } from './Footer';
+import { TitleBanner } from './TitleBanner';
 
 export const Layout: React.FC = () => {
   return (
     <SocketContextProvider>
       <div>
-        <Navbar />
-        <Outlet />
+        <TitleBanner />
+
+        <div className={'container'}>
+          <Outlet />
+        </div>
+        <Footer />
       </div>
     </SocketContextProvider>
   );

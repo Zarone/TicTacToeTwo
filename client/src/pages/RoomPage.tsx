@@ -3,11 +3,16 @@ import { useParams } from 'react-router-dom';
 import { SocketContext } from '../contexts/SocketContext';
 import { GameBoard } from '../components/GameBoard';
 
+interface RoomPlayer {
+  id: string;
+  isYourTurn: boolean;
+}
+
 export interface Room {
   id: number;
   messages: string[];
-  players: string[];
-  board: number[]; 
+  players: Array<RoomPlayer>;
+  board: number[];
 }
 
 export const RoomPage: React.FC = () => {
@@ -49,35 +54,22 @@ export const RoomPage: React.FC = () => {
     return <div>Connecting to Room...</div>;
   }
 
+  const me = room.players!.find((room) => socket!.id === room.id);
+  console.log(room.players, socket!.id, me);
   return (
     <div>
-      <GameBoard room={room}/>
-      <div className={'grid grid-cols-2'}>
-        <div className={'grid-cols-1 rounded-xl'}>Room ID: {room.id}</div>
-        <div>Players: {room.players!.join(' & ')}</div>
+      <div
+        className={
+          'text-center text-amber-900 w-full max-w-[600px] mx-auto my-10 text-4xl p-5'
+        }
+      >
+        <div className={'flex justify-between'}>
+          <span>YOU</span> vs <span>RED</span>
+        </div>
+        <div>underline</div>
       </div>
 
-      <div className={'grid grid-cols-2'}>
-        <div className={'grid-cols-1 bg-blue-300 rounded-xl'}>
-          {room.messages!.map((message) => {
-            return (
-              <div className={'p-2 text-slate-900'} key={message}>
-                {message}
-              </div>
-            );
-          })}
-        </div>
-        <div className={'grid-cols-1 items-start p-5'}>
-          <button
-            className={
-              'w-full text-center rounded-xl bg-slate-900 text-blue-300 block px-4 py-2'
-            }
-            onClick={ping}
-          >
-            Send Ping to Room
-          </button>
-        </div>
-      </div>
+      <GameBoard room={room} />
     </div>
   );
 };

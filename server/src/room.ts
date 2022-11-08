@@ -7,6 +7,7 @@ enum RoomState {
   GAME_OVER = 'gameOver',
   STALE = 'stale', // when no user is in the room
 }
+
 export class Room {
   // 0 is empty, 1 is blue, 2 is red, 3 is both
   #board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -29,30 +30,32 @@ export class Room {
         break;
       case 'placement':
         console.log('placement', data);
-        let isPlayerOne = this.#players[0].id==socket.id;
+        let isPlayerOne = this.#players[0].id == socket.id;
         console.log('isPlayerOne: ' + isPlayerOne);
-        this.#messages.push(`${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}`);
+        this.#messages.push(
+          `${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}`
+        );
 
         //if (this.#state == RoomState.READY && #turn % 2 == isPlayerOne){
         if (isPlayerOne) {
-          if (this.#board[data.tile]==2){
+          if (this.#board[data.tile] == 2) {
             this.#board[data.tile] = 3;
-          } else if (this.#board[data.tile]==1){
-            return "Already at location";
-          } else if (this.#board[data.tile]==0){
+          } else if (this.#board[data.tile] == 1) {
+            return 'Already at location';
+          } else if (this.#board[data.tile] == 0) {
             this.#board[data.tile] = 1;
           } else {
-            return "Data.tile is invalid: " + data.tile
+            return 'Data.tile is invalid: ' + data.tile;
           }
         } else {
-          if (this.#board[data.tile]==1){
+          if (this.#board[data.tile] == 1) {
             this.#board[data.tile] = 3;
-          } else if (this.#board[data.tile]==2){
-            return "Already at location";
-          } else if (this.#board[data.tile]==0){
+          } else if (this.#board[data.tile] == 2) {
+            return 'Already at location';
+          } else if (this.#board[data.tile] == 0) {
             this.#board[data.tile] = 2;
           } else {
-            return "Data.tile is invalid: " + data.tile
+            return 'Data.tile is invalid: ' + data.tile;
           }
         }
         //}
@@ -81,9 +84,12 @@ export class Room {
   serialize() {
     return {
       id: this.#id,
-      players: this.#players.map((socket) => socket.id),
+      players: this.#players.map((socket, index) => ({
+        id: socket.id,
+        isYourTurn: this.#turn % 2 === index,
+      })),
       messages: this.#messages,
-      board: this.#board
+      board: this.#board,
     };
   }
 
