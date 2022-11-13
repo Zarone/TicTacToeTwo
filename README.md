@@ -21,6 +21,7 @@ Copy the `.env.example` file from the `client/` directory to `client/.env`.
 Adjust the variables according to your setup, the defaults will work with this guide.
 
 ### 🏃‍♀️ Running
+
 After that you can start the applications using:
 
 ```shell

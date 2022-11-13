@@ -1,29 +1,27 @@
-
 .buttonInput {
-    font-family: sans-serif;
-    color: black;
-    font-weight: bold;
+  font-family: sans-serif;
+  color: black;
+  font-weight: bold;
 
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    background-color: var(--button-color);
-    border-color: var(--button-color);
+  background-color: var(--button-color);
+  border-color: var(--button-color);
 
-    border-width: 0.2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-    font-size: min(30px, 5vw);
-    padding: 0.45em 0.75em;
-    min-height: 44px;
-    width: 100%;
-    transition: opacity ease-in 0.3s;
+  border-width: 0.2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+  font-size: min(30px, 5vw);
+  padding: 0.45em 0.75em;
+  min-height: 44px;
+  width: 100%;
+  transition: opacity ease-in 0.3s;
 }
 
-
 .buttonDisabled {
-    opacity: 0.3;
-    pointer-events: none;
+  opacity: 0.3;
+  pointer-events: none;
 }

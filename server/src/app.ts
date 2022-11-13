@@ -1,4 +1,4 @@
-import { Socket, Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import express from 'express';
 import http from 'http';
 import { Room } from './room';
@@ -25,6 +25,13 @@ io.on('connection', (socket: Socket) => {
 
   socket.on('disconnect', () => {
     console.log('a user disconnected');
+    [...Object.values(publicRooms), ...Object.values(privateRooms)].forEach(
+      (room: Room) => {
+        if (room.hasPlayer(socket.id)) {
+          room.leave(socket);
+        }
+      }
+    );
   });
 
   const createPublicRoom = () => {
@@ -53,7 +60,7 @@ io.on('connection', (socket: Socket) => {
     for (const roomId in publicRooms) {
       const room = publicRooms[roomId];
 
-      if (room.playerCount < 2) {
+      if (room.playerCount < 2 && !room.hasStarted()) {
         room.join(socket);
         return;
       }

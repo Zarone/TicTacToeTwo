@@ -1,56 +1,50 @@
 :root {
-    --button-color: white;
+  --button-color: white;
 }
 
 .titleText {
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 4rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    font-weight: bold;
-    color: white;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-weight: bold;
+  color: white;
 }
-
 
 .container {
-    width: 100%;
-    margin: 3rem auto 0;
-    border-radius: 5rem;
-    overflow: hidden;
+  width: 100%;
+  margin: 3rem auto 0;
+  border-radius: 5rem;
+  overflow: hidden;
 }
 
-
 .playSection {
-    background-color: rgb(89, 177, 228);
-    width: 100%;
-    padding-bottom: 5rem;
+  background-color: rgb(89, 177, 228);
+  width: 100%;
+  padding-bottom: 5rem;
 }
 
 .ruleSection {
-    background-color: rgb(255, 162, 162);
-    width: 100%;
-    padding-bottom: 5rem;
-
+  background-color: rgb(255, 162, 162);
+  width: 100%;
+  padding-bottom: 5rem;
 }
 
 .templateSection {
-    background-color: rgb(185, 185, 185);
-    width: 100%;
-    padding-bottom: 5rem;
-    height: 40rem;
-
+  background-color: rgb(185, 185, 185);
+  width: 100%;
+  padding-bottom: 5rem;
+  height: 40rem;
 }
-
 
 .footer {
-    margin-top: 7rem;
-    width: 100%;
-    margin-left: 0;
-    background-color: black;
-    height: 20rem;
+  margin-top: 7rem;
+  width: 100%;
+  margin-left: 0;
+  background-color: black;
+  height: 20rem;
 }
-
 
 /* ::-webkit-scrollbar-track
 {
@@ -72,79 +66,77 @@ border-radius: 10px;
 background-color: #517297;
 } */
 
-
 .rulesContainer {
-    min-width: 10rem;
-    max-height: 30rem;
-    aspect-ratio: 1 / 1;
-    border-radius: 2.5rem;
-    background-color: rgb(199, 98, 98);
-    margin-left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-width: 10rem;
+  max-height: 30rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 2.5rem;
+  background-color: rgb(199, 98, 98);
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rulesContainer iframe {
-    width: 90%;
+  width: 90%;
 }
-
 
 .button {
-    font-family: sans-serif;
-    color: black;
-    font-weight: bold;
+  font-family: sans-serif;
+  color: black;
+  font-weight: bold;
 
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    background-color: var(--button-color);
-    border-color: var(--button-color);
+  background-color: var(--button-color);
+  border-color: var(--button-color);
 
-    border-width: 0.2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-    font-size: min(30px, 5vw);
-    padding: 0.45em 0.75em;
-    min-height: 44px;
-    width: 80%;
-    margin-block: 1rem;
+  border-width: 0.2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+  font-size: min(30px, 5vw);
+  padding: 0.45em 0.75em;
+  min-height: 44px;
+  width: 80%;
+  margin-block: 1rem;
 
-    margin-left: 10%;
+  margin-left: 10%;
 }
 
-.button:hover, .buttonInput:hover {
-    background-color: white;
-    border-color: black;
+.button:hover,
+.buttonInput:hover {
+  background-color: white;
+  border-color: black;
 }
-
 
 .button-container {
-    display: flex;
+  display: flex;
 }
 
 .buttonInput-container {
-    display: flex;
-    justify-content: center;
-    padding-block: 2rem;
-    margin: 0 10%;
-    gap: 5%;
+  display: flex;
+  justify-content: center;
+  padding-block: 2rem;
+  margin: 0 10%;
+  gap: 5%;
 }
 
 .description {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .input {
-    display: flex;
-    border-radius: 10px;
-    color: black;
-    min-width: 0;
-    font-size: 1.2rem;
-    width: 100%;
-    padding: 10px 20px;
+  display: flex;
+  border-radius: 10px;
+  color: black;
+  min-width: 0;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 10px 20px;
 }

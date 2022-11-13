@@ -16,6 +16,8 @@ export class Room {
   #players: Socket[] = [];
   #turn = 1;
   #messages: string[] = [];
+  #winner: string;
+  #lastTile: number;
   #state: string = RoomState.IDLE;
 
   constructor(id: string) {
@@ -30,48 +32,85 @@ export class Room {
         break;
       case 'placement':
         console.log('placement', data);
-        let isPlayerOne = this.#players[0].id == socket.id;
-        console.log('isPlayerOne: ' + isPlayerOne);
-        this.#messages.push(
-          `${socket.id} placed ${isPlayerOne ? 'blue' : 'red'} at ${data.tile}`
-        );
 
-        //if (this.#state == RoomState.READY && #turn % 2 == isPlayerOne){
-        if (isPlayerOne) {
-          if (this.#board[data.tile] == 2) {
-            this.#board[data.tile] = 3;
-          } else if (this.#board[data.tile] == 1) {
-            return 'Already at location';
-          } else if (this.#board[data.tile] == 0) {
-            this.#board[data.tile] = 1;
-          } else {
-            return 'Data.tile is invalid: ' + data.tile;
-          }
-        } else {
-          if (this.#board[data.tile] == 1) {
-            this.#board[data.tile] = 3;
-          } else if (this.#board[data.tile] == 2) {
-            return 'Already at location';
-          } else if (this.#board[data.tile] == 0) {
-            this.#board[data.tile] = 2;
-          } else {
-            return 'Data.tile is invalid: ' + data.tile;
-          }
+        if (!this.isValidTurn(socket, data)) {
+          return;
         }
-        //}
+
+        const playerIndex = this.#players.findIndex((p) => p.id === socket.id);
+        const isPlayerTurn = this.#turn % 2 !== playerIndex;
+
+        if (!isPlayerTurn) {
+          console.log('not your turn');
+          return;
+        }
+
+        console.log(data.tile, this.#lastTile);
+        if (data.tile === this.#lastTile) {
+          console.log('cant play on the same field twice');
+          return;
+        }
+
+        this.#board[data.tile] =
+          this.#board[data.tile] +
+          (this.#players.findIndex((s) => s.id === socket.id) + 1);
+
+        this.#lastTile = data.tile;
+        this.#turn++;
+
         console.log('board state: ' + this.#board, this.#board[data.tile]);
+
+        if (this.isGameOver()) {
+          this.#state = RoomState.GAME_OVER;
+          this.#winner = socket.id;
+          console.log('is over');
+        }
+
         break;
     }
 
     this.broadcast();
   }
 
+  isValidTurn(socket: Socket, data: any) {
+    const playerSymbol = this.#players.findIndex((s) => s.id === socket.id) + 1;
+    return !(
+      this.#board[data.tile] === 3 || this.#board[data.tile] === playerSymbol
+    );
+  }
+
+  isGameOver() {
+    const candidates = [
+      // horizontal rows
+      this.#board[0] + this.#board[1] + this.#board[2],
+      this.#board[3] + this.#board[4] + this.#board[5],
+      this.#board[6] + this.#board[7] + this.#board[8],
+      // vertical rows
+      this.#board[0] + this.#board[3] + this.#board[6],
+      this.#board[1] + this.#board[4] + this.#board[7],
+      this.#board[2] + this.#board[5] + this.#board[8],
+      // axis
+      this.#board[0] + this.#board[4] + this.#board[8],
+      this.#board[2] + this.#board[4] + this.#board[6],
+    ];
+
+    if (candidates.some((s) => s === 9)) {
+      // 3 x 3 in a row
+      return true;
+    }
+
+    return false;
+  }
+
   join(socket: Socket) {
     socket.join(this.#id);
-    this.#players.push(socket);
+    socket.emit('roomJoined', this.serialize());
+
+    if (!this.#players.find((player) => player.id === socket.id)) {
+      this.#players.push(socket);
+    }
 
     this.broadcast();
-    socket.emit('roomJoined', this.serialize());
   }
 
   leave(socket: Socket) {
@@ -86,8 +125,11 @@ export class Room {
       id: this.#id,
       players: this.#players.map((socket, index) => ({
         id: socket.id,
-        isYourTurn: this.#turn % 2 === index,
+        isYourTurn: this.#turn % 2 !== index,
+        symbol: index === 0 ? 'blue' : 'red',
+        winner: this.#winner == socket.id,
       })),
+      state: this.#state,
       messages: this.#messages,
       board: this.#board,
     };
@@ -96,6 +138,14 @@ export class Room {
   // Call this method whenever room state changes
   broadcast() {
     io.to(this.#id).emit('roomUpdated', this.serialize());
+  }
+
+  hasPlayer(id: string) {
+    return this.#players.some((player) => player.id === id);
+  }
+
+  hasStarted() {
+    return this.#board.reduce((acc, p) => acc + p, 0) > 0;
   }
 
   get playerCount() {

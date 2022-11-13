@@ -1,0 +1,76 @@
+.progressBar {
+  display: flex;
+  background: #fff;
+  border-radius: 200px;
+  max-width: 600px;
+  margin: -40px auto 0;
+  height: 80px;
+  z-index: 2;
+  position: relative;
+  padding: 5px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.progressInner {
+  background: #eee;
+  width: 100%;
+  border-radius: 200px;
+  display: flex;
+  overflow: hidden;
+}
+.progressBarBlue::before {
+  white-space: pre;
+  content: 'Team Blue';
+  text-transform: uppercase;
+  font-size: 24px;
+  opacity: 1;
+  font-weight: bold;
+  color: rgba(0, 50, 87, 0.5);
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.progressBarBlue {
+  white-space: pre;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  font-weight: bold;
+  background: rgb(89, 177, 228);
+  background: linear-gradient(rgb(89, 177, 228) 0%, rgb(67, 157, 211) 100%);
+  border-radius: 200px 0 0 200px;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  align-items: flex-end;
+  color: #ffffff80;
+  text-align: right;
+  font-size: 24px;
+}
+
+.progressBarRed::before {
+  white-space: pre;
+  content: 'Team Red';
+  text-transform: uppercase;
+  font-size: 24px;
+  opacity: 1;
+  font-weight: bold;
+  color: rgba(87, 0, 0, 0.5);
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+.progressBarRed {
+  white-space: pre;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  align-items: flex-end;
+  color: #ffffff80;
+  background: linear-gradient(rgb(255, 162, 162) 0%, rgb(250, 129, 129) 100%);
+  border-radius: 0 200px 200px 0;
+}

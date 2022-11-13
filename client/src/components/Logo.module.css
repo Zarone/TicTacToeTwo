@@ -1,59 +1,57 @@
 .logo {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
 .logo span {
-    font-size: 42px;
-    font-weight: 1000;
-    font-family: "Rocher", sans-serif;
-
+  font-size: 42px;
+  font-weight: 1000;
+  font-family: 'Rocher', sans-serif;
 }
 
 .tic {
-    transform: scale(0);
-    animation: pop forwards ease 0.5s;
+  transform: scale(0);
+  animation: pop forwards ease 0.5s;
 }
 
 .tac {
-    transform: scale(0);
-    animation: pop forwards ease 0.5s;
-    animation-delay: 300ms;
+  transform: scale(0);
+  animation: pop forwards ease 0.5s;
+  animation-delay: 300ms;
 }
 
 .toe {
-    transform: scale(0);
-    animation: pop forwards ease 0.5s;
-    animation-delay: 600ms;
+  transform: scale(0);
+  animation: pop forwards ease 0.5s;
+  animation-delay: 600ms;
 }
 
 span.two {
-    transform: scale(0);
-    animation: two forwards ease 0.5s;
-    animation-delay: 1200ms;
+  transform: scale(0);
+  animation: two forwards ease 0.5s;
+  animation-delay: 1200ms;
 }
 
 @keyframes pop {
-    0% {
-        opacity: 0;
-        transform: scale(0) rotate(-45deg);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+  }
 
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes two {
-    0% {
-        opacity: 0;
-        transform: translateX(-50px) scale(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) scale(0);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0px) scale(1);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0px) scale(1);
+  }
 }
-
