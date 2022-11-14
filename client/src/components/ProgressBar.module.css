@@ -8,7 +8,7 @@
   z-index: 2;
   position: relative;
   padding: 5px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .progressInner {
@@ -18,18 +18,7 @@
   display: flex;
   overflow: hidden;
 }
-.progressBarBlue::before {
-  white-space: pre;
-  content: 'Team Blue';
-  text-transform: uppercase;
-  font-size: 24px;
-  opacity: 1;
-  font-weight: bold;
-  color: rgba(0, 50, 87, 0.5);
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
+
 .progressBarBlue {
   white-space: pre;
   overflow: hidden;
@@ -42,35 +31,44 @@
   justify-content: flex-end;
   padding-right: 10px;
   padding-bottom: 5px;
-  align-items: flex-end;
+  align-items: center;
   color: #ffffff80;
   text-align: right;
-  font-size: 24px;
+  font-size: 32px;
 }
 
-.progressBarRed::before {
-  white-space: pre;
-  content: 'Team Red';
-  text-transform: uppercase;
-  font-size: 24px;
-  opacity: 1;
-  font-weight: bold;
-  color: rgba(87, 0, 0, 0.5);
-  position: absolute;
-  top: 5px;
-  left: 10px;
-}
+
 .progressBarRed {
   white-space: pre;
   overflow: hidden;
   position: relative;
   display: flex;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   padding-left: 10px;
   padding-bottom: 5px;
-  align-items: flex-end;
+  align-items: center;
   color: #ffffff80;
   background: linear-gradient(rgb(255, 162, 162) 0%, rgb(250, 129, 129) 100%);
   border-radius: 0 200px 200px 0;
+}
+.progressTitle{
+  color:rgb(153, 153, 153);
+  font-weight:bold;
+  font-size:1.5rem;
+  text-align: center;
+  text-transform:uppercase;
+  max-width:250px;
+  background-color: rgb(248, 248, 248);
+  margin:0 auto;
+  width:350px;
+  padding:9px 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+.progressContainer{
+  background-color: transparent;
+  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); */
+  /* filter:drop-shadow(3px 3px 10px rgb(0, 0, 0)); */
 }

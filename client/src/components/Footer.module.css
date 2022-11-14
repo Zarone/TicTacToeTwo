@@ -4,7 +4,7 @@
   background-color: rgb(0, 1, 32);
   padding: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   font-size: 16px;
 }
 

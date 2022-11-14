@@ -6,24 +6,29 @@ export const ProgressBar = () => {
   const totalGames = redGames + blueGames;
 
   return (
-    <div className={styles.progressBar}>
-      <div className={styles.progressInner}>
-        <div
-          className={styles.progressBarBlue}
-          style={{
-            width: (blueGames * 100) / totalGames + '%',
-          }}
-        >
-          {blueGames}
+    <div>
+      <div className={styles.progressContainer}>
+        <div className={styles.progressBar}>
+          <div className={styles.progressInner}>
+            <div
+              className={styles.progressBarBlue}
+              style={{
+                width: (blueGames * 100) / totalGames + '%',
+              }}
+            >
+              {blueGames}
+            </div>
+            <div
+              className={styles.progressBarRed}
+              style={{
+                width: (redGames * 100) / totalGames + '%',
+              }}
+            >
+              {redGames}
+            </div>
+          </div>
         </div>
-        <div
-          className={styles.progressBarRed}
-          style={{
-            width: (redGames * 100) / totalGames + '%',
-          }}
-        >
-          {redGames}
-        </div>
+        <div className={styles.progressTitle}>Team Win Count</div>
       </div>
     </div>
   );

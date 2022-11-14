@@ -29,7 +29,7 @@ export const JoinManager = () => {
         </button>
         <p className={styles.description}>
           Click the <strong>Quick Match</strong> button to automatically get
-          drafted against a random player to play tickOatTwo against.
+          drafted against a random player to play TickOatTwo against.
         </p>
 
         <div className={styles['buttonInput-container']}>
@@ -76,11 +76,11 @@ export const JoinManager = () => {
           ></iframe>
         </div>
       </section>
-      <section className={styles.templateSection}>
+      {/* <section className={styles.templateSection}>
         <p style={{ color: 'black' }}>
           template section for any new content to be added
         </p>
-      </section>
+      </section> */}
     </div>
   );
 };

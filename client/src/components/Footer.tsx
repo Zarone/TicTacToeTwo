@@ -16,7 +16,7 @@ export const Footer = () => {
         </div>
         <div className={styles.column}>
           <div className={styles.footerTitle + ' ' + 'text-blue-200'}>
-            Check out Oats Jenkins
+            Oats Jenkins
           </div>
           <a className="d-link" href="https://www.youtube.com/c/OatsJenkins">
             YouTube
@@ -36,7 +36,7 @@ export const Footer = () => {
         </div>
         <div className={styles.column}>
           <div className={styles.footerTitle + ' ' + 'text-blue-200'}>
-            Join the TickOatTwo 2 Discord
+            TickOatTwo 2 Discord
           </div>
           <div className="d-discord-btn-container">
             <a className="d-discord-anchor" href="https://discord.gg/QdrHwhzC">

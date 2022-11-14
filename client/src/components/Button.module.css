@@ -18,10 +18,14 @@
   padding: 0.45em 0.75em;
   min-height: 44px;
   width: 100%;
-  transition: opacity ease-in 0.3s;
+  transition: 0.08s;
 }
 
 .buttonDisabled {
   opacity: 0.3;
   pointer-events: none;
+}
+.buttonInput:hover {
+  background-color: white;
+  box-shadow: 3px 3px 10px rgb(0 0 0);
 }
