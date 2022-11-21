@@ -4,6 +4,9 @@ module.exports = {
       name: 'server',
       script: 'server/build/app.js',
       watch: 'server/src/',
+      env: {
+        SCORE_PATH: '/opt/tictactoe/scores.json',
+      },
     },
   ],
   deploy: {

@@ -24,9 +24,15 @@ export const JoinManager = () => {
     <div className={styles.container}>
       <section className={styles.playSection}>
         <h1 className={styles.titleText}>Play</h1>
-        <button type="button" className={styles.button} onClick={findFreeRoom}>
-          Quick Match
-        </button>
+        <div className={'flex justify-center'}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={findFreeRoom}
+          >
+            Quick Match
+          </button>
+        </div>
         <p className={styles.description}>
           Click the <strong>Quick Match</strong> button to automatically get
           drafted against a random player to play TickOatTwo against.

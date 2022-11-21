@@ -1,5 +1,6 @@
 import { Socket } from 'socket.io';
 import { io } from './app';
+import scoreboard from './scoreboard';
 
 enum RoomState {
   IDLE = 'idle',
@@ -63,13 +64,25 @@ export class Room {
         if (this.isGameOver()) {
           this.#state = RoomState.GAME_OVER;
           this.#winner = socket.id;
-          console.log('is over');
+          this.handleGameOver();
         }
 
         break;
     }
 
     this.broadcast();
+  }
+
+  handleGameOver() {
+    const index = this.#players.findIndex(
+      (socket, index) => socket.id === this.#winner
+    );
+
+    if (index === 0) {
+      scoreboard.incrementBlue();
+    } else {
+      scoreboard.incrementRed();
+    }
   }
 
   isValidTurn(socket: Socket, data: any) {

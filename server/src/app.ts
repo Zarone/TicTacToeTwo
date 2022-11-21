@@ -2,6 +2,7 @@ import { Server, Socket } from 'socket.io';
 import express from 'express';
 import http from 'http';
 import { Room } from './room';
+import scoreboard from './scoreboard';
 
 const nanoid = require('nanoid');
 const app = express();
@@ -111,6 +112,10 @@ io.on('connection', (socket: Socket) => {
     }
 
     room.leave(socket);
+  });
+
+  socket.on('score', () => {
+    socket.emit('score', scoreboard.scores());
   });
 
   socket.on('listRooms', () => {});

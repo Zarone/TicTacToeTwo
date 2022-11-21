@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SocketContext } from '../contexts/SocketContext';
 import { GameBoard } from '../components/GameBoard';
+import { JoinManager } from '../components/JoinManager';
+import styles from '../components/JoinManager.module.css';
 
 interface RoomPlayer {
   id: string;
@@ -45,6 +47,10 @@ export const RoomPage: React.FC = () => {
     };
   }, [socket]);
 
+  const findFreeRoom = () => {
+    socket!.emit('findFreeRoom');
+  };
+
   const ping = () => {
     socket!.emit('message', {
       event: 'ping',
@@ -82,33 +88,39 @@ export const RoomPage: React.FC = () => {
           'text-center text-amber-900 w-full max-w-[600px] mx-auto my-10 text-4xl p-5'
         }
       >
-        <div className={'text-black flex justify-between'}>
-          <span className={'text-blue-400'}>
-            BLUE {me!.symbol === 'blue' ? '(YOU)' : ''}
-          </span>
-          ⚡️
-          <span className={'text-red-400'}>
-            RED {me!.symbol === 'red' ? '(YOU)' : ''}
-          </span>
+        <div className={'text-black flex justify-center'}>
+          You are playing as:
+          {me!.symbol === 'blue' && (
+            <span className={'text-blue-400 px-5'}>BLUE</span>
+          )}
+          {me!.symbol === 'red' && (
+            <span className={'text-red-400 px-5'}>RED</span>
+          )}
         </div>
       </div>
 
-      {JSON.stringify(room.state)}
-
       {room!.state === 'gameOver' && (
-        <div
-          className={
-            'text-center p-10 font-bold text-center text-4xl text-slate-900 mb-20'
-          }
-        >
-          <h2>Game over!</h2>
-          <div>Winner: {room!.players!.find((s) => s.winner)?.symbol}</div>
+        <div className={'text-center p-10 font-bold text-center mb-20'}>
+          <h2 className={'text-4xl text-slate-900 '}>
+            {me.winner ? 'You won! :)' : 'You lost :('}
+          </h2>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={findFreeRoom}
+          >
+            Play another round
+          </button>
+          <br />
+          <div className={'opacity-50 pointer-events-none'}>
+            <GameBoard room={room} />
+          </div>
         </div>
       )}
 
       {room!.state === 'idle' && (
         <>
-          <div className={'p-20'}></div>
+          <div className={'p-4'}></div>
           <div
             className={'font-bold text-center text-4xl text-slate-900 mb-20'}
           >
@@ -118,6 +130,7 @@ export const RoomPage: React.FC = () => {
           <GameBoard room={room} />
         </>
       )}
+      <JoinManager />
     </div>
   );
 };
