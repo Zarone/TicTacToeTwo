@@ -116,6 +116,11 @@ export class Room {
   }
 
   join(socket: Socket) {
+    if (this.#players.length === 2) {
+      socket.emit('roomNotAvailable');
+      return;
+    }
+
     socket.join(this.#id);
     socket.emit('roomJoined', this.serialize());
 

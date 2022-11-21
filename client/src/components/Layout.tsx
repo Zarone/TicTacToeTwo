@@ -4,6 +4,7 @@ import { SocketContextProvider } from '../contexts/SocketContext';
 import { Footer } from './Footer';
 import { TitleBanner } from './TitleBanner';
 import { ProgressBar } from './ProgressBar';
+import { Toaster } from 'react-hot-toast';
 
 export const Layout: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const Layout: React.FC = () => {
       <div>
         <TitleBanner />
         <ProgressBar />
-
+        <Toaster />
         <div className={'container'}>
           <Outlet />
         </div>

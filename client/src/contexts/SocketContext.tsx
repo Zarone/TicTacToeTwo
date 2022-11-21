@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { io, Socket } from 'socket.io-client';
 import DisconnectReason = Socket.DisconnectReason;
 import { logger } from '../helper/logger';
+import toast from 'react-hot-toast';
 
 export interface SocketState {
   socket: Socket | null;
@@ -52,11 +53,13 @@ export const SocketContextProvider: React.FC<{ children: ReactNode }> = ({
     // event subscription
     const connect = () => {
       logger('connected', socket!.id);
+      toast.success('Connected');
       setState({ socket, connected: true });
     };
 
     const disconnect = (reason: DisconnectReason) => {
       logger('disconnected', reason);
+      toast.error('Disconnected. Please reload the page');
       setState({ socket, connected: false });
     };
 
@@ -66,13 +69,21 @@ export const SocketContextProvider: React.FC<{ children: ReactNode }> = ({
 
     const roomNotFound = (res: any) => {
       logger('Room not available anymore');
+      toast.error('Room not available anymore.');
+      navigate('/');
+    };
+
+    const roomNotAvailable = () => {
+      logger('This room is already full.');
+      toast.error('Room is already full.');
       navigate('/');
     };
 
     socket.on('connect', connect);
     socket.on('disconnect', disconnect);
     socket.on('roomJoined', roomJoined);
-    socket.on('roomNotfound', roomNotFound);
+    socket.on('roomNotFound', roomNotFound);
+    socket.on('roomNotAvailable', roomNotAvailable);
 
     setState((state) => ({ ...state, socket }));
 
