@@ -121,8 +121,8 @@ io.on('connection', (socket: Socket) => {
   socket.on('listRooms', () => {});
 });
 
-server.listen(3001, () => {
-  console.log('Listening on ::3001');
+server.listen(process.env.PORT || 3001, () => {
+  console.log('Listening on ::' + (process.env.PORT || 3001));
 });
 
 // Keep this export for jest testing

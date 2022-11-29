@@ -7,6 +7,8 @@
   "author": "oats-community",
   "license": "MIT",
   "scripts": {
+    "build": "yarn --cwd server/ install && yarn --cwd server/ build",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "concurrently \"yarn workspace @tictactoe/client start\" \"yarn workspace @tictactoe/server start\"",
     "test": "concurrently \"yarn workspace @tictactoe/client test --watchAll=false\" \"yarn workspace @tictactoe/server test\"",
     "format": "prettier --write ."

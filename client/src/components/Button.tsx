@@ -1,5 +1,5 @@
 import styles from './Button.module.css';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
 export const Button: FC<
   Partial<HTMLButtonElement> & {
