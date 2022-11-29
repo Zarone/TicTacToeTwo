@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 export const io = new Server(server, {
   cors: {
-    origin: 'https://tickoattwo.netlify.app/',
+    origin: ['http://localhost:3000', 'https://tickoattwo.netlify.app', '*'],
     methods: ['GET', 'POST'],
     credentials: true,
   },
