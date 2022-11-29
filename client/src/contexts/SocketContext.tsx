@@ -49,7 +49,9 @@ export const SocketContextProvider: React.FC<{ children: ReactNode }> = ({
 
   // Connect to the socket.io server
   useEffect(() => {
-    const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT as string);
+    const socket = io(process.env.REACT_APP_SOCKET_ENDPOINT as string, {
+      withCredentials: true,
+    });
     // event subscription
     const connect = () => {
       logger('connected', socket!.id);
